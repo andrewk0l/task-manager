@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/core';
-import { LocalStorage } from '../../enums/local-storage.enum';
+import { LocalStorage } from '../enums/local-storage.enum';
 
 @Injectable({
   providedIn: 'root',

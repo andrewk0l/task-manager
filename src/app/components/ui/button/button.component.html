@@ -1,0 +1,12 @@
+<button
+  class="button heading--m"
+  [ngClass]="{
+    'button--small': small,
+    'button--danger': color === getButtonColor.DANGER,
+    'button--secondary': color === getButtonColor.SECONDARY
+  }"
+  [disabled]="disabled"
+  (click)="onClick()"
+>
+  {{ label }}
+</button>
