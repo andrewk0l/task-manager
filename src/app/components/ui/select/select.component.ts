@@ -1,5 +1,5 @@
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { LabelValue } from '../../../models/label-value.model';
+import { LabelValue } from '../../../../models/label-value.model';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import {
   ChangeDetectionStrategy,

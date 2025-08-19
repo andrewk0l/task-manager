@@ -1,41 +1,6 @@
-
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
-
-html {
-  @include mat.theme((
-    color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}
-
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-}
 @use "./styles/reset";
 @use "./styles/fonts";
-@use "./styles/breakpoints";
+@use "./styles/breakpoint";
 @use "./styles/custom-scrollbar";
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -47,36 +12,34 @@ body {
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$kanban-task-management-primary: mat.define-palette(mat.$indigo-palette);
-$kanban-task-management-accent: mat.define-palette(
-  mat.$pink-palette,
-  A200,
-  A100,
-  A400
-);
-
-// The warn palette is optional (defaults to red).
-$kanban-task-management-warn: mat.define-palette(mat.$red-palette);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$kanban-task-management-theme: mat.define-light-theme(
+// Create the theme using predefined palettes (Angular Material 18+)
+$kanban-task-management-theme: mat.define-theme(
   (
     color: (
-      primary: $kanban-task-management-primary,
-      accent: $kanban-task-management-accent,
-      warn: $kanban-task-management-warn,
+      theme-type: light,
+      primary: mat.$violet-palette,
+      tertiary: mat.$red-palette,
+      use-system-variables: true,
+    ),
+    typography: (
+      brand-family: "PlusJakartaSans-Bold",
+      plain-family: "PlusJakartaSans-Regular",
+      use-system-variables: true,
+    ),
+    density: (
+      scale: 0,
     ),
   )
 );
 
 // Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($kanban-task-management-theme);
+
+// Include system-level variables for easier customization
+:root {
+  @include mat.system-level-colors($kanban-task-management-theme);
+  @include mat.system-level-typography($kanban-task-management-theme);
+}
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -106,7 +69,7 @@ $kanban-task-management-theme: mat.define-light-theme(
   --mat-select-panel-background-color: #ffffff;
   --mat-menu-container-color: #ffffff;
   --input-label: #828fa3;
-  --logo: url("./assets/images/logo-dark.svg");
+  --logo: url("/assets/images/logo-dark.svg");
   --new-column-bg: linear-gradient(
     180deg,
     #e9effa 0%,
@@ -123,7 +86,7 @@ $kanban-task-management-theme: mat.define-light-theme(
   --input-label: #ffffff;
   --mat-select-panel-background-color: #2b2c37;
   --mat-menu-container-color: #2b2c37;
-  --logo: url("./assets/images/logo-light.svg");
+  --logo: url("/assets/images/logo-light.svg");
   --new-column-bg: linear-gradient(
     180deg,
     rgba(43, 44, 55, 0.25) 0%,
@@ -253,7 +216,7 @@ mat-form-field {
   font-family: "PlusJakartaSans-Bold";
 }
 
-@include breakpoints.mq(tablet) {
+@include breakpoint.mq(tablet) {
   body {
     overflow: hidden;
   }
@@ -262,6 +225,3 @@ mat-form-field {
     width: 48rem;
   }
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
