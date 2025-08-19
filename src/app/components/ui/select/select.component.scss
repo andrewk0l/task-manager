@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+
+  .icon {
+    top: 50%;
+    right: 0;
+    position: absolute;
+    transform: translateY(-50%);
+  }
+}
