@@ -97,7 +97,8 @@ $kanban-task-management-theme: mat.define-theme(
 mat-form-field {
   width: 100%;
   border-radius: 0.4rem;
-  outline: 0.1rem solid rgba(130, 143, 163, 0.25);
+  outline: 0.1rem solid var(--line-light);
+  background-color: var(--white-bg);
 
   &.mat-focused {
     outline: 0.1rem solid var(--main-purple);
@@ -132,6 +133,7 @@ mat-form-field {
   min-height: 0;
   padding-top: 0.8rem !important;
   padding-bottom: 0.8rem !important;
+  background-color: var(--white-bg) !important;
 }
 
 .mat-mdc-select-value-text,
@@ -139,6 +141,7 @@ mat-form-field {
   line-height: 1.5 !important;
   font-size: 1.3rem !important;
   font-family: "PlusJakartaSans-Regular" !important;
+  color: var(--black) !important;
 }
 
 .cdk-overlay-pane {
@@ -157,6 +160,40 @@ mat-form-field {
 
 .mdc-list-item__primary-text {
   color: var(--black);
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--white-bg) !important;
+}
+
+// Additional input styling for theme support
+input,
+textarea {
+  background-color: var(--white-bg) !important;
+  color: var(--black) !important;
+  border: 0.1rem solid var(--line-light);
+  border-radius: 0.4rem;
+
+  &:focus {
+    outline: 0.1rem solid var(--main-purple);
+    background-color: var(--white-bg) !important;
+    border-color: var(--main-purple);
+  }
+
+  &::placeholder {
+    color: var(--placeholder-color);
+  }
+}
+
+// Ensure proper theming for autocomplete states
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--white-bg) inset !important;
+  -webkit-text-fill-color: var(--black) !important;
 }
 
 // Custom classes
