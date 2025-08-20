@@ -1,1 +1,18 @@
-<p>side-menu works!</p>
+<div class="container">
+  <div class="menu">
+    <app-mobile-menu [sidebarMode]="true"></app-mobile-menu>
+  </div>
+
+  <div class="footer">
+    <app-theme-toggle></app-theme-toggle>
+
+    <div class="footer__hide">
+      <img
+        src="../../../assets/images/icon-hide-sidebar.svg"
+        alt="icon-hide-sidebar"
+      />
+
+      <span class="heading--m" (click)="onToggleSidebar()">Hide Sidebar</span>
+    </div>
+  </div>
+</div>

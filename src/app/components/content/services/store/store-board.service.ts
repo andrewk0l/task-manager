@@ -17,7 +17,28 @@ import * as uuid from 'uuid';
 export class StoreBoardService {
   private boards: WritableSignal<Board[] | null> = signal(null);
 
-  constructor() {}
+  constructor() {
+    this.initializeFromLocalStorage();
+  }
+
+  // Initialize boards from localStorage on service creation
+  private initializeFromLocalStorage(): void {
+    const storedData = localStorage.getItem('frontend_mentor_kanban');
+
+    if (storedData) {
+      try {
+        const parsedData = JSON.parse(storedData);
+        if (Array.isArray(parsedData) && parsedData.length > 0) {
+          this.setBoards(parsedData);
+          console.log('Boards loaded from localStorage:', parsedData);
+        }
+      } catch (error) {
+        console.error('Error parsing localStorage data:', error);
+      }
+    } else {
+      console.log('No data found in localStorage');
+    }
+  }
 
   // Sets initial boards to signal
   public setBoards(boards: Board[]): void {
